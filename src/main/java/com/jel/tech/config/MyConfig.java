@@ -18,8 +18,9 @@ import org.springframework.stereotype.Controller;
 //                              classes = {Controller.class})
 //        }
         includeFilters = {
-            @ComponentScan.Filter(type = FilterType.ANNOTATION,
-            classes = Controller.class)
+//            @ComponentScan.Filter(type = FilterType.ANNOTATION,
+//            classes = Controller.class),
+            @ComponentScan.Filter(type = FilterType.CUSTOM, classes = {MyTypeFilter.class})
         },useDefaultFilters = false
 
 )
