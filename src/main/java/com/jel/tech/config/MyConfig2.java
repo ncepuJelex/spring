@@ -2,7 +2,9 @@ package com.jel.tech.config;
 
 import com.jel.tech.condition.LinuxCondition;
 import com.jel.tech.condition.WindowsCondition;
+import com.jel.tech.model.Color;
 import com.jel.tech.model.Person;
+import com.jel.tech.model.Red;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.*;
 
@@ -13,6 +15,7 @@ import org.springframework.context.annotation.*;
 @Configuration
 @ComponentScan(value = "com.jel.tech")
 //@Conditional({WindowsCondition.class})
+@Import({Color.class, Red.class}) // 导入组件，id默认为全类名
 public class MyConfig2 {
 
     /**
@@ -50,4 +53,10 @@ public class MyConfig2 {
     public Person person02() {
         return new Person("Linus", 50);
     }
+
+    /**
+     * 给容器中注册组件
+     *  1.包扫描+组件标注注解
+     *  2. @Import 注解
+     */
 }

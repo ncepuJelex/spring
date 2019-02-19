@@ -21,6 +21,21 @@ public class SpringTest {
 
 
     @Test
+    public void testImport() {
+
+        printBeans(context);
+    }
+
+    private void printBeans(AnnotationConfigApplicationContext configApplicationContext) {
+
+        String[] beanDefinitionNames = configApplicationContext.getBeanDefinitionNames();
+        for (String x : beanDefinitionNames) {
+            System.out.println(x);
+        }
+    }
+
+
+    @Test
     public void fun3() {
 
         String[] beanNamesForType = context.getBeanNamesForType(Person.class);
