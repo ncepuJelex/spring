@@ -1,6 +1,7 @@
 package com.jel.tech.config;
 
 import com.jel.tech.condition.LinuxCondition;
+import com.jel.tech.condition.MyImportBeanDefinitionRegistrar;
 import com.jel.tech.condition.MyImportSelector;
 import com.jel.tech.condition.WindowsCondition;
 import com.jel.tech.model.Color;
@@ -16,7 +17,7 @@ import org.springframework.context.annotation.*;
 @Configuration
 @ComponentScan(value = "com.jel.tech")
 //@Conditional({WindowsCondition.class})
-@Import({Color.class, Red.class, MyImportSelector.class}) // 导入组件，id默认为全类名
+@Import({Color.class, Red.class, MyImportSelector.class, MyImportBeanDefinitionRegistrar.class}) // 导入组件，id默认为全类名
 public class MyConfig2 {
 
     /**
@@ -60,5 +61,6 @@ public class MyConfig2 {
      *  1.包扫描+组件标注注解
      *  2. @Import 注解
      *  3. @ImportSelector
+     *  4. ImportBeanDefinitionRegistar
      */
 }
