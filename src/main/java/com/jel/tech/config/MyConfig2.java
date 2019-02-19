@@ -16,7 +16,12 @@ public class MyConfig2 {
      * 多实例时，ioc容器启动不会去创建对象，而单实例会！
      * @return
      */
-    @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+    /**
+     * 懒加载：
+     *  单实例时，默认在容器创建后会创建对象
+     * @return
+     */
+//    @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 //    @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
     @Bean
     public Person person() {
