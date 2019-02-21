@@ -56,5 +56,22 @@ public class LifeCycleTest {
          dog preDestroy
          cat destroy
          */
+
+        /**
+         * BeanPostProcessor:
+         *
+         * cat constructor
+         postProcessorBeforINitialization...cat->com.jel.tech.model.Cat@105fece7
+         cat afterPropertiesSet
+         postProcessAfterInitialization...cat->com.jel.tech.model.Cat@105fece7
+         dog constructor
+         postProcessorBeforINitialization...dog->com.jel.tech.model.Dog@75c072cb
+         dog postConstruct
+         postProcessAfterInitialization...dog->com.jel.tech.model.Dog@75c072cb
+         car constructor...
+         postProcessorBeforINitialization...car->com.jel.tech.model.Car@3b938003
+         car init...
+         postProcessAfterInitialization...car->com.jel.tech.model.Car@3b938003
+         */
     }
 }
