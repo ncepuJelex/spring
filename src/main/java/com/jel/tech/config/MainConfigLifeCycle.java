@@ -47,6 +47,51 @@ import org.springframework.context.annotation.Scope;
          try {
          invokeInitMethods(beanName, wrappedBean, mbd); // BeanPostProcessor处理之后执行初始化方法
          }
+    Spring底层对BeanPostProcessor的使用：
+        ApplicationContextAwareProcessor implements BeanPostProcessor;
+             if (System.getSecurityManager() != null &&
+             (bean instanceof EnvironmentAware || bean instanceof EmbeddedValueResolverAware ||
+             bean instanceof ResourceLoaderAware || bean instanceof ApplicationEventPublisherAware ||
+             bean instanceof MessageSourceAware || bean instanceof ApplicationContextAware)) {
+             acc = this.applicationContext.getBeanFactory().getAccessControlContext();
+             }
+
+             if (acc != null) {
+             AccessController.doPrivileged(new PrivilegedAction<Object>() {
+            @Override
+            public Object run() {
+            invokeAwareInterfaces(bean);
+            return null;
+            }
+            }, acc);
+             }
+             else {
+             invokeAwareInterfaces(bean);
+             }
+
+             private void invokeAwareInterfaces(Object bean) {
+             if (bean instanceof Aware) {
+             if (bean instanceof EnvironmentAware) {
+             ((EnvironmentAware) bean).setEnvironment(this.applicationContext.getEnvironment());
+             }
+             if (bean instanceof EmbeddedValueResolverAware) {
+             ((EmbeddedValueResolverAware) bean).setEmbeddedValueResolver(this.embeddedValueResolver);
+             }
+             if (bean instanceof ResourceLoaderAware) {
+             ((ResourceLoaderAware) bean).setResourceLoader(this.applicationContext);
+             }
+             if (bean instanceof ApplicationEventPublisherAware) {
+             ((ApplicationEventPublisherAware) bean).setApplicationEventPublisher(this.applicationContext);
+             }
+             if (bean instanceof MessageSourceAware) {
+             ((MessageSourceAware) bean).setMessageSource(this.applicationContext);
+             }
+             if (bean instanceof ApplicationContextAware) {
+             ((ApplicationContextAware) bean).setApplicationContext(this.applicationContext);
+             }
+             }
+             }
+        to sum up:  bean赋值，注入其它组件，Autowired,等等都是BeanPostProcessor在搞事情
  * @author jelex.xu
  * @create 2019-02-21 22:57
  **/
