@@ -5,6 +5,7 @@ import com.jel.tech.condition.MyImportBeanDefinitionRegistrar;
 import com.jel.tech.condition.MyImportSelector;
 import com.jel.tech.condition.WindowsCondition;
 import com.jel.tech.model.Color;
+import com.jel.tech.model.ColorFactoryBean;
 import com.jel.tech.model.Person;
 import com.jel.tech.model.Red;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -62,5 +63,10 @@ public class MyConfig2 {
      *  2. @Import 注解
      *  3. @ImportSelector
      *  4. ImportBeanDefinitionRegistar
+     *  5. FactoryBean
      */
+    @Bean
+    public ColorFactoryBean colorFactoryBean() {
+        return new ColorFactoryBean();
+    }
 }

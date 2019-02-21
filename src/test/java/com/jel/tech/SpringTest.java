@@ -32,6 +32,10 @@ public class SpringTest {
         for (String x : beanDefinitionNames) {
             System.out.println(x);
         }
+        Object colorFactoryBean = configApplicationContext.getBean("colorFactoryBean");
+        System.out.println(colorFactoryBean.getClass()); // class com.jel.tech.model.Color
+        Object colorFactoryBean2 = configApplicationContext.getBean("&colorFactoryBean");
+        System.out.println(colorFactoryBean2.getClass()); // class com.jel.tech.model.ColorFactoryBean
     }
 
 
