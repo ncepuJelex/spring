@@ -15,7 +15,38 @@ import org.springframework.context.annotation.Scope;
  *    PreDestroy 注解：bean移除之前调用；
  * 4. BeanPostProcessor 接口：
  *      postProcessBeforeInitialization(); 初始化工作之前
- *      postProcessAfterInitialiazation(); 初始化之后
+ *      postProcessAfterInitialization(); 初始化之后
+ *      遍历容器中得到的BeanPostProcessor，执行beforeInitialization(),
+ *      一旦返回null, 跳出循环，不会执行后面的BeanPostProcessor
+ *
+ *      源码：
+ *          // Initialize the bean instance.
+         Object exposedObject = bean;
+         try {
+         populateBean(beanName, mbd, instanceWrapper);  // 赋值
+         if (exposedObject != null) {
+         exposedObject = initializeBean(beanName, exposedObject, mbd); // BeanPostProcessor处理
+         }
+         }
+         catch (Throwable ex) {
+         if (ex instanceof BeanCreationException && beanName.equals(((BeanCreationException) ex).getBeanName())) {
+         throw (BeanCreationException) ex;
+         }
+         else {
+         throw new BeanCreationException(
+         mbd.getResourceDescription(), beanName, "Initialization of bean failed", ex);
+         }
+         }
+        。。。
+
+         Object wrappedBean = bean;
+         if (mbd == null || !mbd.isSynthetic()) {
+         wrappedBean = applyBeanPostProcessorsBeforeInitialization(wrappedBean, beanName);
+         }
+
+         try {
+         invokeInitMethods(beanName, wrappedBean, mbd); // BeanPostProcessor处理之后执行初始化方法
+         }
  * @author jelex.xu
  * @create 2019-02-21 22:57
  **/
