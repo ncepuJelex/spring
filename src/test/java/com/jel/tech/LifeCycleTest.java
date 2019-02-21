@@ -23,12 +23,12 @@ public class LifeCycleTest {
          car init...
          container init ok.
          */
-//        context.destroy();
+        context.destroy();
         //console-> car destroy...
 
         /**
          * prototype范围时：内容负责创建，但不管理
          */
-        context.getBean(Car.class);
+//        context.getBean(Car.class);
     }
 }
