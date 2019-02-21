@@ -30,5 +30,31 @@ public class LifeCycleTest {
          * prototype范围时：内容负责创建，但不管理
          */
 //        context.getBean(Car.class);
+
+        /**
+         * InitializingBean和DisposableBean
+         * cat constructor
+         cat afterPropertiesSet
+         car constructor...
+         car init...
+
+         container init ok.
+         car destroy...
+         cat destroy
+         */
+
+        /**
+         * @PreDestroy @PostConstruct
+         * cat constructor
+         cat afterPropertiesSet
+         dog constructor
+         dog postConstruct
+         car constructor...
+         car init...
+         container init ok.
+         car destroy...
+         dog preDestroy
+         cat destroy
+         */
     }
 }
