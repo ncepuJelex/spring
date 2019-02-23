@@ -28,6 +28,11 @@ public class PropertiesValueTest {
 
         Person person = (Person) context.getBean("person");
         System.out.println(person);
+
+
+        ConfigurableEnvironment environment = context.getEnvironment();
+        String property = environment.getProperty("person.nickName");
+        System.out.println(property);
     }
 
     private void printBeans(AnnotationConfigApplicationContext configApplicationContext) {
