@@ -1,13 +1,17 @@
 package com.jel.tech.model;
 
+import org.springframework.beans.factory.annotation.Value;
+
 /**
  * @author jelex.xu
  * @create 2019-02-15 23:57
  **/
 public class Person {
 
+    @Value("张三")
     private String name;
 
+    @Value("#{30-3}")
     private int age;
 
     public Person() {
