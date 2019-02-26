@@ -16,6 +16,10 @@ import org.springframework.context.annotation.Primary;
  *    @Autowired 有个required 属性，默认是true
  *    @Primary 默认首选的bean,但它的优先级没有@Qualifier高
  *
+ * Spring支持@Resource @Inject
+ *  默认按照组件名称进行装配,它有个name属性，可以指定注入哪个bean
+ *
+ * @Inject 需要导入 javax.inject包
  * @author jelex.xu
  * @create 2019-02-24 00:10
  **/
