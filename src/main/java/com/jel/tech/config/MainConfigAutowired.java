@@ -26,6 +26,10 @@ import org.springframework.context.annotation.Primary;
  *
  * @Autowired 还可以在构造器上，属性上
  *
+ *
+ * 自定义组件想要注入Spring底层组件，参考Aware,实现xxxAware接口
+ *  查看Red类， xxxAware功能是使用xxxProcessor处理的
+ *
  * @author jelex.xu
  * @create 2019-02-24 00:10
  **/
