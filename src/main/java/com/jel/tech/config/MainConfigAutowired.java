@@ -18,7 +18,7 @@ import org.springframework.context.annotation.Primary;
  *
  * Spring支持@Resource @Inject
  *  默认按照组件名称进行装配,它有个name属性，可以指定注入哪个bean
- *
+ *AutowiredAnnotationBeanPostProcessor 处理的
  * @Inject 需要导入 javax.inject包
  * @author jelex.xu
  * @create 2019-02-24 00:10
