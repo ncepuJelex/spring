@@ -1,5 +1,8 @@
 package com.jel.tech.service;
 
+import com.jel.tech.dao.PersonDao;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 /**
@@ -8,4 +11,19 @@ import org.springframework.stereotype.Service;
  **/
 @Service
 public class PersonService {
+
+//    @Qualifier("personDao")
+    @Autowired(required = false)
+    private PersonDao personDao2;
+
+    public void print() {
+        System.out.println(personDao2);
+    }
+
+    @Override
+    public String toString() {
+        return "PersonService{" +
+                "personDao=" + personDao2 +
+                '}';
+    }
 }
