@@ -1,9 +1,12 @@
 package com.jel.tech.model;
 
+import org.springframework.stereotype.Component;
+
 /**
  * @author jelex.xu
  * @create 2019-02-21 22:59
  **/
+@Component
 public class Car {
 
     public Car() {

@@ -1,6 +1,8 @@
 package com.jel.tech.config;
 
 import com.jel.tech.dao.PersonDao;
+import com.jel.tech.model.Car;
+import com.jel.tech.model.Color;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -19,11 +21,15 @@ import org.springframework.context.annotation.Primary;
  * Spring支持@Resource @Inject
  *  默认按照组件名称进行装配,它有个name属性，可以指定注入哪个bean
  *AutowiredAnnotationBeanPostProcessor 处理的
+ *
  * @Inject 需要导入 javax.inject包
+ *
+ * @Autowired 还可以在构造器上，属性上
+ *
  * @author jelex.xu
  * @create 2019-02-24 00:10
  **/
-@ComponentScan({"com.jel.tech.controller","com.jel.tech.service","com.jel.tech.dao"})
+@ComponentScan({"com.jel.tech.controller","com.jel.tech.service","com.jel.tech.dao","com.jel.tech.model"})
 @Configuration
 public class MainConfigAutowired {
 
@@ -34,5 +40,12 @@ public class MainConfigAutowired {
         PersonDao personDao = new PersonDao();
         personDao.setId("2");
         return personDao;
+    }
+
+    @Bean
+    public Color color(Car car) {
+        Color color = new Color();
+        color.setCar(car);
+        return color;
     }
 }
