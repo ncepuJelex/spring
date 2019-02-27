@@ -40,6 +40,19 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  *     AbstractAdvisorAutoProxyCreator#setBeanFactory(..)
  *     AnnotationAwareAspectJAutoProxyCreator#initBeanFactory(..)
  *
+ *      流程：
+ *          1.传递配置类，创建ioc容器；
+ *          2.注册配置类，调用refresh(),刷新容器；
+ *          3.registerBeanPostProcessor():
+ *              先获取ioc容器中创建好的beanpostprocessor;
+ *              优先注册实现了PriorityOrdered接口的BeanPostProcessor
+ *              再注册实现了Ordered接口的BeanPostProcessor
+ *              最后是其它BeanPostProcessor
+ *              AbstractAutowireCapableBeanFactory#initializeBean(..):初始化bean
+ *              AbstractAutowireCapableBeanFactory#invokeAwareMethods(..):处理Aware接口回调
+ *              AbstractAutowireCapableBeanFactory#invokeInitMethods(..)执行自定义方法
+ *              AbstractAutowireCapableBeanFactory#applyBeanPostProcessorsAfterInitialization(..)
+ *
  * @author jelex.xu
  * @create 2019-02-27 10:37
  **/
