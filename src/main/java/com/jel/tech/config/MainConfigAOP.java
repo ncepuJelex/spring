@@ -21,6 +21,20 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  *
  *  告诉spring哪个类是切面类：给切面类加个注解，@Aspect
  *  @EnableAspectJAutoProxy  非常重要
+ *
+ *  AOP原理：
+ *      @Import(AspectJAutoProxyRegistrar.class)
+        public @interface EnableAspectJAutoProxy {}
+ *  org.springframework.context.annotation.AspectJAutoProxyRegistrar#registerBeanDefinitions(
+ *          org.springframework.core.type.AnnotationMetadata,
+ *          org.springframework.beans.factory.support.BeanDefinitionRegistry)方法中注册了
+ *      AnnotationAwareAspectJAutoProxyCreator bean,它的继承关系如下:
+ *          AnnotationAwareAspectJAutoProxyCreator
+ *              -> AspectJAwareAdvisorAutoProxyCreator
+ *                  -> AbstractAdvisorAutoProxyCreator
+ *                      -> AbstractAutoProxyCreator
+ *                          - - -> implements SmartInstantiationAwareBeanPostProcessor, BeanFactoryAware
+ *              关注后置处理器（bean初始化前后搞了什么鬼）
  * @author jelex.xu
  * @create 2019-02-27 10:37
  **/
