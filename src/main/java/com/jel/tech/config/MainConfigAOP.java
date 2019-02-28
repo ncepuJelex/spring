@@ -53,6 +53,30 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  *              AbstractAutowireCapableBeanFactory#invokeInitMethods(..)执行自定义方法
  *              AbstractAutowireCapableBeanFactory#applyBeanPostProcessorsAfterInitialization(..)
  *
+ *  AbstractApplicationContext#finishBeanFactoryInitialization(beanFactory);
+ *  AbstractAutowireCapableBeanFactory#resolveBeforeInstantiation(..)
+ *      protected Object resolveBeforeInstantiation(String beanName, RootBeanDefinition mbd) {
+            Object bean = null;
+            if (!Boolean.FALSE.equals(mbd.beforeInstantiationResolved)) {
+            // Make sure bean class is actually resolved at this point.
+            if (!mbd.isSynthetic() && hasInstantiationAwareBeanPostProcessors()) {
+            Class<?> targetType = determineTargetType(beanName, mbd);
+            if (targetType != null) {
+            bean = applyBeanPostProcessorsBeforeInstantiation(targetType, beanName);
+            if (bean != null) {
+            bean = applyBeanPostProcessorsAfterInitialization(bean, beanName);
+            }
+            }
+            }
+            mbd.beforeInstantiationResolved = (bean != null);
+            }
+            return bean;
+            }
+ *
+ *  创建bean之前调用上述代码-> aop
+ *      每一个bean创建之前，调用 postBeanProcessorsBeforeInstantiation();
+ *
+ *
  * @author jelex.xu
  * @create 2019-02-27 10:37
  **/
