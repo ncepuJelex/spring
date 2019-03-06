@@ -77,6 +77,12 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  *      每一个bean创建之前，调用 postBeanProcessorsBeforeInstantiation();
  *
  *
+ *  AOP链：
+ *      CglibAopProxy#intercept
+ *          List<Object> chain = this.advised.getInterceptorsAndDynamicInterceptionAdvice(method, targetClass);
+
+ *
+ *
  * @author jelex.xu
  * @create 2019-02-27 10:37
  **/
