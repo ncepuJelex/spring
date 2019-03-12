@@ -4,6 +4,7 @@ import com.jel.tech.aop.MathCalculator;
 import com.jel.tech.config.MainConfigAOP;
 import com.jel.tech.extension.ExtConfig;
 import org.junit.Test;
+import org.springframework.context.ApplicationEvent;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
@@ -17,6 +18,9 @@ public class ExtensionTest {
 
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ExtConfig.class);
 
+
+        context.publishEvent(new ApplicationEvent(new String("my event")) {
+        });
 
         context.close();
     }
