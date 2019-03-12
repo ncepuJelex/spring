@@ -14,6 +14,9 @@ import java.beans.PropertyVetoException;
 
 /**
  * 事务
+ *
+ * 导入2个组件：AutoProxyRegistrar.class.getName(), ProxyTransactionManagementConfiguration.class.getName()};
+ *
  * @author jelex.xu
  * @create 2019-03-06 22:53
  **/
