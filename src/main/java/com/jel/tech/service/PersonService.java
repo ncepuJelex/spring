@@ -3,6 +3,8 @@ package com.jel.tech.service;
 import com.jel.tech.dao.PersonDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.ApplicationEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -14,9 +16,9 @@ import javax.annotation.Resource;
 @Service
 public class PersonService {
 
-//    @Qualifier("personDao")
+    @Qualifier("personDao")
 //    @Autowired(required = false)
-    @Resource(name = "personDao2")
+//    @Resource(name = "personDao2")
     private PersonDao personDao;
 
     public void print() {
@@ -28,5 +30,10 @@ public class PersonService {
         return "PersonService{" +
                 "personDao=" + personDao +
                 '}';
+    }
+
+    @EventListener(classes = ApplicationEvent.class)
+    public void listener(ApplicationEvent event) {
+        System.out.println("event:" + event);
     }
 }

@@ -10,9 +10,13 @@ import org.springframework.stereotype.Component;
 /**
  * @author jelex.xu
  * @create 2019-03-12 22:46
+ *
+ *  @EventListener
+ *
+ *
  **/
 @Configuration
-@ComponentScan("com.jel.tech.extension")
+@ComponentScan({"com.jel.tech.extension","com.jel.tech.service"})
 public class ExtConfig {
 
     @Bean
